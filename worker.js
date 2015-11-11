@@ -53,13 +53,14 @@ dataRef.once('value', function(snapshot) {
     // clear it out
     todaysDateRef.remove();
     todaysDateRef = dataRef.child(todaysDate);
-    getData();
+    todaysDateRef.set({dateTime: fullDate});
   } else {
     // its not there so create it
     // dataRef.update(todaysDate);
     todaysDateRef = dataRef.child(todaysDate);
-    getData();
+    todaysDateRef.set({dateTime: fullDate});
   }
+  getData();
 });
 
 function getData() {

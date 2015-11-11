@@ -41,7 +41,7 @@ var igParams = {
 };
 
 var d = Date.now();
-
+d = d*1000;
 var todaysDate = new Date(d).setHours(0,0,0,0);
 var fullDate = new Date().getTime();
 console.log('todays date with hours', fullDate);
@@ -98,7 +98,7 @@ function getData() {
 
     for(i; i < len; i++) { //iterate through tweets
 
-      var twitterDay = new Date( Date.parse(tweets[i].created_at) ).setHours(0,0,0,0);
+      var twitterDay = new Date( Date.parse(tweets[i].created_at) * 1000 ).setHours(0,0,0,0);
       console.log('current twitter date without time', twitterDay);
 
       if (new Date(todaysDate).toDateString() === new Date(twitterDay).toDateString()) { // dates match

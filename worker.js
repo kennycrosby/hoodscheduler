@@ -80,7 +80,7 @@ function getData() {
       var instaDay = new Date(parseInt(instagrams[i].created_time) * 1000).setHours(0,0,0,0);
       console.log('current instagrams date without time', instaDay);
 
-      if (todaysDate === instaDay) { // dates match
+      if (todaysDate.toDateString() === instaDay.toDateString()) { // dates match
         console.log('WE HAVE A MATCH FOR INSTAGRAM');
         todaysDateRef.push(instagrams[i]);
       };
@@ -99,10 +99,13 @@ function getData() {
       var twitterDay = new Date( Date.parse(tweets[i].created_at) ).setHours(0,0,0,0);
       console.log('current twitter date without time', twitterDay);
 
-      if (todaysDate === twitterDay) { // dates match
+      if (todaysDate.toDateString() === twitterDay.toDateString()) { // dates match
         console.log('WE HAVE A MATCH FOR TWITTER');
         todaysDateRef.push(tweets[i]);
       }
     }
   });
 }
+
+// 1447142400000
+// 1447200000000

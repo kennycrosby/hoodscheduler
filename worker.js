@@ -15,15 +15,13 @@ var dataRef = new Firebase('https://hoodapp.firebaseio.com/testdata');
 var twConfig = {
     consumer_key: 'bhuMfuPGp0qQsKftVI4qrKKTx',
     consumer_secret: 'Mazcsq3gI1umrhY9HKAGGnrzgw0wRGPx3EJRqfBeR34PdzKysA',
-    access_token: '874117766-4IIr0q9scRFiHkeoGIqfOr6FPm5jEkVVcHV6s6Py',
-    access_token_secret: 'jHtJNMPKbqmpKvGBKnt4fEKJWfHRlK14OQK1QSl0OgOuU'
+    access_token: '874117766-TAPhWRq8SZTiwKFuaKncKqPFmVXS0HDTogS0mp6B',
+    access_token_secret: '2n8y4c6w1ElVymrQ7GWrUvsd3xvAOunCvjiygpSQFbytx'
   };
 
  // Instagram Params
 ig.use({ client_id: '05652b69ce2c4833a06f265f8de61d78',
          client_secret: 'bc9e8e3201db468e966aedf5b2d46c98' });
-
-
 
 // instantiate Twit module
 var twitter = new Twit(twConfig);
@@ -43,6 +41,8 @@ var igParams = {
 };
 
 var todaysDate = new Date().setHours(0,0,0,0);
+var fullDate = new Date().getTime();
+console.log('todays date with hours', fullDate);
 console.log('todays date', todaysDate);
 
 var dataRef = new Firebase('https://hoodapp.firebaseio.com/testdata');
@@ -90,12 +90,14 @@ function getData() {
   // request data 
   twitter.get(USER_TIMELINE_URL, twParams, function (err, data, resp) {
 
+
+
     // save data
     var tweets = data,
         i = 0, len = tweets.length;
 
     for(i; i < len; i++) { //iterate through tweets
-      
+
       var twitterDay = new Date( Date.parse(tweets[i].created_at) ).setHours(0,0,0,0);
       console.log('current twitter date without time', twitterDay);
 

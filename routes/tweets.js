@@ -70,7 +70,6 @@ router.get('/', function(req, res, next) {
     for(i; i < len; i++) {
       //iterate through tweets
 
-
       // var theDay = new Date(parseInt(instagrams[i].created_time) * 1000);
       // var formattedDate = (theDay.getMonth()+1) + '-' + theDay.getDate() + '-' + theDay.getFullYear(); 
 
@@ -140,3 +139,5 @@ module.exports = router;
 // print that day
 // new Date(1446357625).setHours(0,0,0,0); 
 // new Date(Date.parse("Mon Nov 09 17:59:54 +0000 2015")).setHours(0,0,0,0);
+
+// moment(1445410800000).format('L');

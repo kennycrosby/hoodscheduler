@@ -40,7 +40,9 @@ var igParams = {
   count : 25
 };
 
-var todaysDate = new Date().setHours(0,0,0,0);
+var d = Date.now();
+
+var todaysDate = new Date(d).setHours(0,0,0,0);
 var fullDate = new Date().getTime();
 console.log('todays date with hours', fullDate);
 console.log('todays date', todaysDate);
@@ -52,7 +54,7 @@ var todaysDateRef;
 dataRef.once('value', function(snapshot) {
   var dateSnapshot = snapshot.child(todaysDate).exists();
   if (dateSnapshot) {
-    console.log('IT EXISTS ITS THERE OMG FUCK');
+    console.log('RECORD EXISTS');
     todaysDateRef = dataRef.child(todaysDate);
     // clear it out
     todaysDateRef.remove();
@@ -90,8 +92,6 @@ function getData() {
   // request data 
   twitter.get(USER_TIMELINE_URL, twParams, function (err, data, resp) {
 
-
-
     // save data
     var tweets = data,
         i = 0, len = tweets.length;
@@ -109,5 +109,12 @@ function getData() {
   });
 }
 
-// 1447142400000
-// 1447200000000
+
+// The dates on my machine
+// todays date with hours 1447274453331
+// todays date 1447228800000
+
+// todays date with hours 1447274863080
+// todays date 1447200000000
+
+

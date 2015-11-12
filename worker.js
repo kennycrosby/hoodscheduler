@@ -35,12 +35,17 @@ var igParams = {
   count : 25
 };
 
-// var d = Date.now();
-// var todaysDate = new Date(d).setHours(0,0,0,0);
+var d = Date.now();
+var todaysDate = new Date(d).setHours(0,0,0,0);
 var fullDate = new Date().getTime();
 
+// var todaysDate = 1446274800000; // Oct 31
+// var todaysDate = 1446883200000; // Nov 7
+// var todaysDate = 1446969600000; // Nov 8
 // var todaysDate = 1447056000000; // Nov 9
-var todaysDate = 1446274800000; // Oct 31
+// var todaysDate = 1447142400000; // Nov 10
+// var todaysDate = 1447228800000; // Nov 11
+
 
 console.log('todays date with hours', fullDate);
 console.log('todays date', todaysDate);

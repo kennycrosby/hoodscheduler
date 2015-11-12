@@ -4,7 +4,7 @@ var Twit = require('twit');
 var ig = require('instagram-node').instagram();
 var Firebase = require('firebase');
 
-var dataRef = new Firebase('https://hoodapp.firebaseio.com/testdata');
+var dataRef = new Firebase('https://hoodapp.firebaseio.com/news');
 
 // Client IDs, Tokens, Secrets
 var twConfig = {
@@ -35,13 +35,16 @@ var igParams = {
   count : 25
 };
 
-var d = Date.now();
-var todaysDate = new Date(d).setHours(0,0,0,0);
+// var d = Date.now();
+// var todaysDate = new Date(d).setHours(0,0,0,0);
 var fullDate = new Date().getTime();
+
+// var todaysDate = 1447056000000; // Nov 9
+var todaysDate = 1446274800000; // Oct 31
+
 console.log('todays date with hours', fullDate);
 console.log('todays date', todaysDate);
 
-var dataRef = new Firebase('https://hoodapp.firebaseio.com/testdata');
 var todaysDateRef;
 
 // see if todays date exists
@@ -97,17 +100,13 @@ function getData() {
 
       if (new Date(todaysDate).toDateString() === new Date(twitterDay).toDateString()) { // dates match
         console.log('WE HAVE A MATCH FOR TWITTER');
+
+        var tweet = {
+
+        }
+
         todaysDateRef.push(tweets[i]);
       }
     }
   });
 }
-
-// The dates on my machine
-// todays date with hours 1447274453331
-// todays date 1447228800000
-
-// todays date with hours 1447274863080
-// todays date 1447200000000
-
-

@@ -36,45 +36,31 @@ var igParams = {
   count : 25
 };
 
-// var d = Date.now();
-// var todaysDate = new Date(d).setHours(0,0,0,0);
+var d = Date.now();
+var todaysDate = new Date(d).setHours(0,0,0,0);
 
-// var todaysDate = 1446274800000; // Oct 31
-// var todaysDate = 1446624000000; // Nov 4
-// var todaysDate = 1446710400000; // Nov 5
-// var todaysDate = 1446883200000; // Nov 6
-// var todaysDate = 1446883200000; // Nov 7
-// var todaysDate = 1446969600000; // Nov 8
-// var todaysDate = 1447056000000; // Nov 9
-// var todaysDate = 1447142400000; // Nov 10
+// Set data for single day
 // var todaysDate = 1447228800000; // Nov 11
-
 // console.log('todays date', todaysDate);
 
-// // see if todays date exists
-// dataRef.once('value', function(snapshot) {
-//   var dateSnapshot = snapshot.child(todaysDate).exists();
-//   if (dateSnapshot) {
-//     console.log('RECORD EXISTS');
-//     todaysDateRef = dataRef.child(todaysDate);
-//     // clear it out
-//     todaysDateRef.remove();
-//     todaysDateRef = dataRef.child(todaysDate);
-//     getData();
-//   } else {
-//     // its not there so create it
-//     todaysDateRef = dataRef.child(todaysDate);
-//     getData();
-//   }
-// });
+// see if todays date exists
+dataRef.once('value', function(snapshot) {
+  var dateSnapshot = snapshot.child(todaysDate).exists();
+  if (dateSnapshot) {
+    console.log('RECORD EXISTS');
+    todaysDateRef = dataRef.child(todaysDate);
+    // clear it out
+    todaysDateRef.remove();
+    todaysDateRef = dataRef.child(todaysDate);
+  } else {
+    // its not there so create it
+    todaysDateRef = dataRef.child(todaysDate);
+  }
+  getData(todaysDate);
+});
 
-function setDataDayObject() {
-
-}
-
-fillMonthWithData('Sept');
-
-function fillMonthWithData(month) {
+//populateMonthData('Sept');
+function populateMonthData(month) {
   // Database content filler
   for(var i = 1; i < 31; i++) {
     var todaysDate = new Date(month+' '+i+' 2015').getTime();
@@ -120,10 +106,6 @@ function getData(today) {
 
       if (new Date(today).toDateString() === new Date(twitterDay).toDateString()) { // dates match
         console.log('WE HAVE A MATCH FOR TWITTER');
-
-        var tweet = {
-
-        }
         todaysDateRef = dataRef.child(today);
         todaysDateRef.push(tweets[i]);
       }

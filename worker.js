@@ -59,12 +59,11 @@ dataRef.once('value', function(snapshot) {
   getData(todaysDate);
 });
 
-//populateMonthData('Sept');
+// populateMonthData('Sept');
 function populateMonthData(month) {
   // Database content filler
   for(var i = 1; i < 31; i++) {
     var todaysDate = new Date(month+' '+i+' 2015').getTime();
-    todaysDateRef = dataRef.child(todaysDate);
     getData(todaysDate);
   }
 }
@@ -87,7 +86,9 @@ function getData(today) {
       if (new Date(today).toDateString() === new Date(instaDay).toDateString()) { // dates match
         console.log('WE HAVE A MATCH FOR INSTAGRAM');
         todaysDateRef = dataRef.child(today);
+        
         todaysDateRef.push(instagrams[i]);
+        todaysDateRef.setPriority(0 - today);
       };
     }
   });
@@ -107,7 +108,10 @@ function getData(today) {
       if (new Date(today).toDateString() === new Date(twitterDay).toDateString()) { // dates match
         console.log('WE HAVE A MATCH FOR TWITTER');
         todaysDateRef = dataRef.child(today);
+        console.log(0 - today);
+        
         todaysDateRef.push(tweets[i]);
+        todaysDateRef.setPriority(0 - today);
       }
     }
   });
